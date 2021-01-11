@@ -6,23 +6,15 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 16:21:32 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/11 17:55:28 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/11 21:33:36 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-// #include "../includes/globals.h"
+#include "../includes/globals.h"
 
 char		*ft_parse_flag(const char *flag)
 {
-	const char *GLOBAL_d = "%d";
-	const char *GLOBAL_s = "%s";
-	const char *GLOBAL_c = "%c";
-	const char *GLOBAL_p = "%p";
-	const char *GLOBAL_i = "%i";
-	const char *GLOBAL_u = "%u";
-	const char *GLOBAL_x = "%x";
-	const char *GLOBAL_X = "%X";
 	int index;
 	char *flag_cpy;
 
@@ -49,15 +41,6 @@ char		*ft_parse_flag(const char *flag)
 
 int		ft_select_flag(const char *flag, va_list arg)
 {
-	const char *GLOBAL_d = "%d";
-	const char *GLOBAL_s = "%s";
-	const char *GLOBAL_c = "%c";
-	const char *GLOBAL_p = "%p";
-	const char *GLOBAL_i = "%i";
-	const char *GLOBAL_u = "%u";
-	const char *GLOBAL_x = "%x";
-	const char *GLOBAL_X = "%X";
-	
 	if (ft_strcmp((char *)flag, (char *)GLOBAL_d) == 0)
 		return (ft_print_int(arg));
 	else if (ft_strcmp((char *)flag, (char *)GLOBAL_s) == 0)
