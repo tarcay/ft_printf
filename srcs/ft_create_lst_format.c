@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:54:13 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/20 08:56:38 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/20 18:21:33 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,11 @@ static t_flags	*ft_lst_init_elem(char *c, t_flags *format)
 		else if (*c == '*')
 			format->star = 1;
 		if (*c == '.')
+		{
 			format->dot = ft_atoi((char *)c + 1);
+			if (format->dot == 0)
+				format->dot = -1;
+		}
 		return (format);
 	}
 	return (NULL);
