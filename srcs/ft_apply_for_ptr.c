@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 23:49:51 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/20 18:29:09 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/20 19:03:27 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ static int	ft_print_and_count_addr(long arg, int index)
 	size = 1;
 	if (index == 1)
 		ft_putstr("0x");
-	if (arg)
-		ft_putnbr_base(arg, "0123456789abcdef", &size, index);
+	if (!arg)
+		return (2);
+	ft_putnbr_base(arg, "0123456789abcdef", &size, index);
 	return (size + 2);
 }
 
