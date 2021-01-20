@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 13:22:27 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/15 13:44:59 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/20 15:07:42 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,24 @@
 
 static int		ft_print_and_count_str(char *str, int index, int size_arg)
 {
-	if (str)
+	if (str == NULL)
 	{
-		if (index == 0)
-			return (ft_strlen(str));
 		if (index == 1)
-		{
-			while (*str && size_arg)
-			{
-				ft_putchar(*str);
-				str++;
-				size_arg--;
-			}
-		}
-		return (!size_arg ? ft_strlen(str) : size_arg);
+			ft_putstr("(null)");
+		return (6);
 	}
-	return (0);
+	if (index == 0)
+		return (ft_strlen(str));
+	if (index == 1)
+	{
+		while (*str && size_arg)
+		{
+			ft_putchar(*str);
+			str++;
+			size_arg--;
+		}
+	}
+	return (!size_arg ? ft_strlen(str) : size_arg);
 }
 
 int				ft_apply_for_str(t_flags *format, va_list args)

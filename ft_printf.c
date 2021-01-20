@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 16:31:09 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/19 22:55:50 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/20 15:18:18 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int			ft_printf(const char *str, ...)
 			analyze_type(format_lst_tmp, args, &size_arg);
 			str += (format_lst_tmp->size);
 			format_lst_tmp = format_lst_tmp->next;
+			if (!*str)
+				break ;
 		}
 		ft_putchar(*str);
 		str++;
