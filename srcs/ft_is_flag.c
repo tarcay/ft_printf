@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_unsigned.c                                :+:      :+:    :+:   */
+/*   ft_is_flag.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/11 16:19:22 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/11 16:26:44 by tarcay           ###   ########.fr       */
+/*   Created: 2021/01/14 16:46:55 by tarcay            #+#    #+#             */
+/*   Updated: 2021/01/20 09:04:58 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int		ft_print_unsigned(va_list arg)
-{	
-	int tmp;
-	int size;
-	unsigned int test;
+int	ft_is_flag(char c)
+{
+	char	*str;
 
-	tmp = va_arg(arg, int);
-	test = 0;
-	size = 1;
-	if (tmp < 0)
+	str = FLAGS;
+	if (c)
 	{
-		test = 4294967296 + tmp;
-		ft_putnbr_u(test, &size);
-		return (size);
+		while (*str)
+		{
+			if (*str == c)
+				return (1);
+			str++;
+		}
 	}
-	else
-	{
-		test = (unsigned int)tmp;
-		ft_putnbr_u(test, &size);
-		return (size);
-	}
+	return (0);
 }

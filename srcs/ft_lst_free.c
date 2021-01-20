@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_lst_free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/11 16:06:02 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/11 16:27:25 by tarcay           ###   ########.fr       */
+/*   Created: 2021/01/14 16:53:02 by tarcay            #+#    #+#             */
+/*   Updated: 2021/01/20 08:59:43 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	ft_strcmp(char *s1, char *s2)
+void	ft_lst_free(t_flags **lst)
 {
-	int i;
+	t_flags	*tmp;
+	t_flags	*element;
 
-	i = 0;
-	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
-		i++;
-	return (s1[i] - s2[i]);
+	if (!(*lst))
+		return ;
+	element = *lst;
+	while (element)
+	{
+		tmp = element->next;
+		element = ft_lst_new_elem();
+		free(element);
+		element = tmp;
+	}
+	*lst = NULL;
 }

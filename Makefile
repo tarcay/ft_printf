@@ -6,30 +6,40 @@ NAME = libftprintf.a
 
 SRCS =  ft_printf.c \
 		srcs/ft_putnbr_base.c \
-		srcs/ft_strcmp.c \
 		srcs/ft_putchar.c \
 		srcs/ft_putstr.c \
 		srcs/ft_putnbr.c \
-		srcs/ft_putnbr_u.c \
-		srcs/ft_print_int.c \
-		srcs/ft_print_str.c \
-		srcs/ft_print_char.c \
-		srcs/ft_print_addr.c \
-		srcs/ft_print_unsigned.c \
-		srcs/ft_print_flag.c \
+		srcs/ft_is_conv_char.c \
+		srcs/ft_is_flag.c \
+		srcs/ft_lst_new_elem.c \
+		srcs/ft_lst_free.c \
+		srcs/ft_create_lst_format.c \
+		srcs/ft_print_width.c \
+		srcs/ft_apply_for_str.c \
+		srcs/ft_apply_for_char.c \
+		srcs/ft_apply_for_int.c \
+		srcs/ft_apply_for_ptr.c \
+		srcs/ft_apply_for_unsigned.c \
+		srcs/ft_apply_for_hexa.c \
+		srcs/ft_apply_for_percent.c \
 		
 SURPL_O = ft_putnbr_base.o \
-		  ft_strcmp.o \
 		  ft_putchar.o \
 		  ft_putstr.o \
 		  ft_putnbr.o \
-		  ft_putnbr_u.o \
-		  ft_print_int.o \
-		  ft_print_str.o \
-		  ft_print_char.o \
-		  ft_print_addr.o \
-		  ft_print_unsigned.o \
-		  ft_print_flag.o \
+		  ft_is_conv_char.o \
+		  ft_is_flag.o \
+		  ft_lst_new_elem.o \
+		  ft_lst_free.o \
+		  ft_create_lst_format.o \
+		  ft_print_width.o \
+		  ft_apply_for_str.o \
+		  ft_apply_for_char.o \
+		  ft_apply_for_int.o \
+		  ft_apply_for_ptr.o \
+		  ft_apply_for_unsigned.o \
+		  ft_apply_for_hexa.o \
+		  ft_apply_for_percent.o \
 
 CC = clang
 

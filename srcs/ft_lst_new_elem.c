@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_u.c                                      :+:      :+:    :+:   */
+/*   ft_lst_new_elem.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/11 16:12:32 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/11 16:27:03 by tarcay           ###   ########.fr       */
+/*   Created: 2021/01/14 16:51:00 by tarcay            #+#    #+#             */
+/*   Updated: 2021/01/20 09:06:03 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_putnbr_u(unsigned int nb, int *size)
+t_flags	*ft_lst_new_elem(void)
 {
-	long nb_tmp;
+	t_flags	*struct_flags;
 
-	nb_tmp = nb;
-	if (nb > 9)
-	{
-		ft_putnbr_u((nb_tmp / 10), size);
-		*size = *size + 1;
-	}
-	ft_putchar(nb_tmp % 10 + '0');
+	if (!(struct_flags = malloc(sizeof(t_flags))))
+		return (NULL);
+	struct_flags->type = 0;
+	struct_flags->star = 0;
+	struct_flags->minius = 0;
+	struct_flags->dot = 0;
+	struct_flags->zero = 0;
+	struct_flags->width = 0;
+	struct_flags->size = 0;
+	struct_flags->next = NULL;
+	return (struct_flags);
 }

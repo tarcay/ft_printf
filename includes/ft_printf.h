@@ -1,24 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/14 17:03:17 by tarcay            #+#    #+#             */
+/*   Updated: 2021/01/20 09:21:01 by tarcay           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+# define CONV_CHAR "cspdiuxX%"
+# define FLAGS "*-.0123456789"
 
 # include "../libft/libft.h"
 # include <stdarg.h>
 # include <stdio.h>
 # include <unistd.h>
 
-int			ft_printf(const char *input, ...);
-int			ft_print_addr(va_list arg);
-char		*ft_parse_flag(const char *flag);
-int			ft_select_flag(const char *flag, va_list arg);
-int			ft_print_str(va_list arg);
-int			ft_strcmp(char *s1, char *s2);
-int			ft_print_unsigned(va_list arg);
-void		ft_putnbr_u(unsigned int nb, int *size);
-int			ft_print_int(va_list arg);
-void		ft_putnbr(int nb, int *size);
-int			ft_putchar(char c);
-void		ft_putstr(char *str);
-int			ft_print_char(va_list arg);
-void		ft_putnbr_base(long nbr, char *base, int *size);
+typedef struct	s_flags
+{
+	char			type;
+	int				star;
+	int				minius;
+	int				dot;
+	int				zero;
+	int				width;
+	int				size;
+	struct s_flags	*next;
+}				t_flags;
+
+int				ft_printf(const char *input, ...);
+int				ft_apply_for_str(t_flags *format, va_list args);
+int				ft_apply_for_char(t_flags *format, va_list args);
+int				ft_apply_for_int(t_flags *format, va_list args);
+int				ft_apply_for_ptr(t_flags *format, va_list args);
+int				ft_apply_for_unsigned(t_flags *format, va_list args);
+int				ft_apply_for_hexa(t_flags *format, va_list args, int index);
+int				ft_apply_for_percent(void);
+int				ft_is_conv_char(char c);
+int				ft_is_flag(char c);
+int				ft_putchar(char c);
+void			ft_putnbr(int nb);
+void			ft_putstr(char *str);
+void			ft_putnbr_base(long nbr, char *base, int *size, int index);
+void			ft_create_lst_format(t_flags **lst_format, char *input);
+void			ft_lst_free(t_flags **lst);
+void			ft_print_width(int size_width, int size_arg, int index);
+t_flags			*ft_lst_new_elem(void);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 16:07:31 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/11 16:26:52 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/20 09:01:12 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int ft_putchar(char c)
+int	ft_putchar(char c)
 {
 	write(1, &c, 1);
 	return (1);

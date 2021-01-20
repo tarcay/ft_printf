@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_apply_for_char.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/11 16:09:49 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/20 09:03:52 by tarcay           ###   ########.fr       */
+/*   Created: 2021/01/18 11:13:26 by tarcay            #+#    #+#             */
+/*   Updated: 2021/01/18 11:15:59 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_putstr(char *str)
+int		ft_apply_for_char(t_flags *format, va_list args)
 {
-	int i;
+	char	arg_char;
 
-	i = 0;
-	while (str[i])
+	if (format && args)
 	{
-		ft_putchar(str[i]);
-		i++;
+		if (format->star > 0)
+			format->width = va_arg(args, int);
+		arg_char = (char)va_arg(args, char *);
+		if (format->minius)
+		{
+			ft_putchar(arg_char);
+			ft_print_width(format->width, 1, 1);
+		}
+		if (!format->minius)
+		{
+			ft_print_width(format->width, 1, 1);
+			ft_putchar(arg_char);
+		}
+		return (format->width > 1 ? format->width : 1);
 	}
+	return (0);
 }
