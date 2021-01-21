@@ -5,7 +5,8 @@ N_TEMP = temp.a
 NAME = libftprintf.a
 
 SRCS =  ft_printf.c \
-		srcs/ft_putnbr_base.c \
+		srcs/ft_ui.c \
+		srcs/ft_ul.c \
 		srcs/ft_putchar.c \
 		srcs/ft_putstr.c \
 		srcs/ft_putnbr.c \
@@ -25,7 +26,8 @@ SRCS =  ft_printf.c \
 		srcs/ft_print_precision.c \
 		srcs/ft_count_size_nb.c \
 		
-SURPL_O = ft_putnbr_base.o \
+SURPL_O = ft_ui.o \
+		  ft_ul.o \
 		  ft_putchar.o \
 		  ft_putstr.o \
 		  ft_putnbr.o \

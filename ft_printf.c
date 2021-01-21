@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 16:31:09 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/20 15:18:18 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/21 19:34:53 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,11 @@ int			ft_printf(const char *str, ...)
 			if (!*str)
 				break ;
 		}
-		ft_putchar(*str);
-		str++;
+		if (*str != '%')
+		{
+			ft_putchar(*str);
+			str++;
+		}
 	}
 	va_end(args);
 	ft_lst_free(&format_lst);

@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 18:08:05 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/21 18:20:13 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/21 22:59:00 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	count_nb_hexa(int nb)
 	int size;
 
 	size = 1;
-	ft_putnbr_base(nb, "0123456789abcdef", &size, 0, 0);
+	ft_ui(nb, "0123456789abcdef", &size, 0, 0);
 	return (size);
 }
 
@@ -29,9 +29,9 @@ static int	ft_print_and_count_hexa(int arg, int dot, int index)
 	size = 1;
 	size_arg = count_nb_hexa(arg);
 	if (index == 1)
-		ft_putnbr_base(arg, "0123456789abcdef", &size, dot - size_arg, 1);
+		ft_ui(arg, "0123456789abcdef", &size, dot - size_arg, 1);
 	if (index == 2)
-		ft_putnbr_base(arg, "0123456789ABCDEF", &size, dot - size_arg, 1);
+		ft_ui(arg, "0123456789ABCDEF", &size, dot - size_arg, 1);
 	return (size);
 }
 
@@ -48,12 +48,7 @@ int			ft_apply_for_hexa(t_flags *format, va_list args, int index)
 		arg_int = va_arg(args, int);
 		arg_size = count_nb_hexa(arg_int);
 		if (format->dot > arg_size)
-		{
 			arg_size = format->dot;
-			// if (arg_int < 0)
-			// 	arg_size++;
-		}
-		format->dot == -1 ? arg_size = 0 : 0;
 		if (format->minius)
 		{
 			ft_print_and_count_hexa(arg_int, format->dot, index);

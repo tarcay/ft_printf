@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 17:03:17 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/21 17:59:49 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/21 23:01:36 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int				ft_count_size_nb(long nb, int dot_size);
 void			ft_print_precision(int arg_size, int dot);
 void			ft_putnbr(long nb, int dot);
 void			ft_putstr(char *str);
-void			ft_putnbr_base(long nbr, char *base, int *size, int dot, int index);
+void			ft_ui(unsigned int nbr, char *base, int *size, int dot, int index);
+void			ft_ul(unsigned int nbr, char *base, int *size, int dot, int index);
 void			ft_create_lst_format(t_flags **lst_format, char *input);
 void			ft_lst_free(t_flags **lst);
 void			ft_print_width(int size_width, int size_arg, int index);

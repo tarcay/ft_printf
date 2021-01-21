@@ -6,13 +6,13 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 23:49:51 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/21 18:13:22 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/21 22:58:09 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static int	ft_print_and_count_addr(long arg, int index)
+static int	ft_print_and_count_addr(unsigned long arg, int index)
 {
 	int	size;
 
@@ -21,7 +21,7 @@ static int	ft_print_and_count_addr(long arg, int index)
 		ft_putstr("0x");
 	if (!arg)
 		return (2);
-	ft_putnbr_base(arg, "0123456789abcdef", &size, 0, index);
+	ft_ul(arg, "0123456789abcdef", &size, 0, index);
 	return (size + 2);
 }
 
@@ -35,7 +35,7 @@ int			ft_apply_for_ptr(t_flags *format, va_list args)
 	{
 		if (format->star > 0)
 			format->width = va_arg(args, int);
-		arg_long = (long)va_arg(args, void *);
+		arg_long = (unsigned long)va_arg(args, void *);
 		arg_size = ft_print_and_count_addr(arg_long, 0);
 		if (format->minius)
 		{
