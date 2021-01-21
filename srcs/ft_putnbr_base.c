@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 17:09:35 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/20 09:07:17 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/21 18:00:01 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	base_is_valide(char *base)
 	return (1);
 }
 
-void		ft_putnbr_base(long nbr, char *base, int *size, int index)
+void		ft_putnbr_base(long nbr, char *base, int *size, int dot, int index)
 {
 	if (base_is_valide(base) == 1)
 	{
@@ -68,9 +68,14 @@ void		ft_putnbr_base(long nbr, char *base, int *size, int index)
 			nbr = nbr * -1;
 			ft_putchar('-');
 		}
+		while(dot > 0)
+		{
+			ft_putchar('0');
+			dot--;
+		}
 		if (nbr >= check_base(base))
 		{
-			ft_putnbr_base((nbr / check_base(base)), base, size, index);
+			ft_putnbr_base((nbr / check_base(base)), base, size, dot, index);
 			*size = *size + 1;
 		}
 		if (index == 1)

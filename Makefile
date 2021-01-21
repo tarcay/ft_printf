@@ -22,6 +22,8 @@ SRCS =  ft_printf.c \
 		srcs/ft_apply_for_unsigned.c \
 		srcs/ft_apply_for_hexa.c \
 		srcs/ft_apply_for_percent.c \
+		srcs/ft_print_precision.c \
+		srcs/ft_count_size_nb.c \
 		
 SURPL_O = ft_putnbr_base.o \
 		  ft_putchar.o \
@@ -40,6 +42,8 @@ SURPL_O = ft_putnbr_base.o \
 		  ft_apply_for_unsigned.o \
 		  ft_apply_for_hexa.o \
 		  ft_apply_for_percent.o \
+		  ft_print_precision.o \
+		  ft_count_size_nb.o \
 
 CC = clang
 

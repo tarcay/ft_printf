@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_count_size_nb.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/11 16:11:02 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/21 12:03:09 by tarcay           ###   ########.fr       */
+/*   Created: 2021/01/21 17:19:48 by tarcay            #+#    #+#             */
+/*   Updated: 2021/01/21 17:34:49 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_putnbr(long nb, int precision)
+int	ft_count_size_nb(long nb, int dot_size)
 {
-	if (nb < 0)
+	int	count;
+
+	count = 1;
+	if (nb < 0 && dot_size == 0)
+		count++;
+	while (nb < -9 || nb > 9)
 	{
-		nb = nb * -1;
-		ft_putchar('-');
+		nb = nb / 10;
+		count++;
 	}
-    while(precision > 0)
-	{
-		ft_putchar('0');
-		precision--;
-	}
-	if (nb < -9 || nb > 9)
-		ft_putnbr((nb / 10), precision);
-	ft_putchar(nb % 10 + '0');
+	return (count);
 }
