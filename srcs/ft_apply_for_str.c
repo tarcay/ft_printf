@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 13:22:27 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/22 10:08:47 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/22 10:18:06 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int				ft_apply_for_str(t_flags *format, va_list args)
 		arg_size = ft_print_and_count_str(arg_str, 0, 0);
 		if (format->dot == -1)
 			arg_size = 0;
-		if (format->dot > 0)
+		if (format->dot > 0 && format->dot < arg_size)
 			arg_size = format->dot;
 		if (format->minius)
 		{
