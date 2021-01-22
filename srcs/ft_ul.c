@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 17:09:35 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/21 23:02:37 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/22 09:53:16 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	base_is_valide(char *base)
 	return (1);
 }
 
-void		ft_ul(unsigned int nbr, char *base, int *size, int dot, int index)
+void		ft_ul(unsigned long nbr, char *base, int *size, int dot, int index)
 {
 	if (base_is_valide(base) == 1)
 	{

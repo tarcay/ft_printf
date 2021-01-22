@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:54:13 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/21 19:19:00 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/22 09:49:45 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,13 @@
 
 static int		next_format_in_input(char *input, int index)
 {
-	if (input)
+	while (ft_is_conv_char(input[index]) != 1)
 	{
-		while (input[index])
-		{
-			if (input[index] == '%')
-				return (index);
-			index++;
-		}
-		return (-2);
+		if(!input[index])
+			return (-1);
+		index++;
 	}
-	return (-3);
+	return (index + 1);
 }
 
 static void		ft_lstadd_end(t_flags **alst, t_flags *new)
@@ -107,16 +103,18 @@ void			ft_create_lst_format(t_flags **lst_format, char *input)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
 	if (input)
 	{
 		*lst_format = NULL;
-		while (i != -2 && i != -3)
+		while (input[i] && i != -1)
 		{
-			i = next_format_in_input(input, i + 1);
-			if (i != -2 && input[i + 1])
+			if (input[i] == '%')
+			{
 				ft_lstadd_end(lst_format, ft_lst_create_elem(&input[i] + 1));
-			if (input[i] == '%' && input[i + 1] == '%')
+				i = next_format_in_input(input, i + 1);
+			}
+			else
 				i++;
 		}
 	}
