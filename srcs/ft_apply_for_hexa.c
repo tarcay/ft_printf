@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 18:08:05 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/23 09:57:44 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/23 11:27:10 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int			ft_apply_for_hexa(t_flags *format, va_list args, int index)
 	{
 		if (format->star > 0)
 			format->width = va_arg(args, int);
+		if (format->star > 1)
+			format->dot = va_arg(args, int);
 		arg_int = va_arg(args, int);
 		arg_size = count_nb_hexa(arg_int);
 		if (format->dot > arg_size)

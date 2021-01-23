@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:00:04 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/23 09:08:42 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/23 11:23:26 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	swt(int size_width, int arg_int, int arg_size, int dot, int index)
 	long arg;
 
 	arg = (long)arg_int;
+	if (arg_int < 0 && dot > ft_count_size_nb(arg, 1))
+		arg_size = dot + 1;
 	if (index == 0)
 	{
 		if (arg_size > 0)
@@ -46,6 +48,8 @@ int			ft_apply_for_int(t_flags *format, va_list args)
 	{
 		if (format->star > 0)
 			format->width = va_arg(args, int);
+		if (format->star > 1)
+			format->dot = va_arg(args, int);
 		arg_int = va_arg(args, int);
 		arg_size = ft_count_size_nb((long)arg_int, 0);
 		if (format->dot > arg_size)
