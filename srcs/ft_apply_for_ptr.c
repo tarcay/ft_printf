@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 23:49:51 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/21 22:58:09 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/23 09:09:01 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ int			ft_apply_for_ptr(t_flags *format, va_list args)
 			format->width = va_arg(args, int);
 		arg_long = (unsigned long)va_arg(args, void *);
 		arg_size = ft_print_and_count_addr(arg_long, 0);
-		if (format->minius)
+		if ((format->minius || format->width < 0) && ++format->minius)
 		{
+			if (format->width < 0)
+				format->width *= -1;
 			ft_print_and_count_addr(arg_long, 1);
 			ft_print_width(format->width, arg_size, 1);
 		}
