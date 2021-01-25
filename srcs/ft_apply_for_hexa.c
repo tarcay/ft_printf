@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 18:08:05 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/25 18:05:29 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/25 22:42:20 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static int	ft_print_hexa(int arg, int dot, int index)
 
 	size = 1;
 	size_tmp = count_nb_hexa(arg);
+	if (arg == 0 && dot == -1)
+		return (0);
 	if (index == 1)
 		ft_base_ui(arg, &size, dot - size_tmp, index);
 	if (index == 2)
@@ -45,6 +47,7 @@ int			ft_apply_for_hexa(t_flags *elem, va_list args, int index)
 		elem->dot = va_arg(args, int);
 	arg = va_arg(args, int);
 	elem->arg_size = count_nb_hexa(arg);
+	elem->dot == -1 && arg == 0 ? elem->arg_size = 0 : 0;
 	elem->dot > elem->arg_size ? elem->arg_size = elem->dot : 0;
 	if ((elem->minius || elem->width < 0) && ++elem->minius)
 	{
