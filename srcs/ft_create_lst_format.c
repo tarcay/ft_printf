@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:54:13 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/23 11:22:45 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/25 16:35:37 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int		next_format_in_input(char *input, int index)
 {
 	while (ft_is_conv_char(input[index]) != 1)
 	{
-		if(!input[index])
+		if (!input[index])
 			return (-1);
 		index++;
 	}
@@ -62,8 +62,7 @@ static t_flags	*ft_lst_init_elem(char *c, t_flags *format)
 		{
 			format->zero = 0;
 			format->dot = ft_atoi((char *)c + 1);
-			if (format->dot == 0 && *++c != '*')
-				format->dot = -1;
+			format->dot == 0 && *++c != '*' ? format->dot = -1 : 0;
 		}
 		return (format);
 	}
@@ -87,7 +86,7 @@ static t_flags	*ft_lst_create_elem(char *format)
 			if (ft_is_conv_char(*format_tmp) == 1)
 			{
 				element = ft_lst_init_elem(format_tmp, element);
-				element->size = size;
+				element->size_flag = size;
 				break ;
 			}
 			if (!(element = ft_lst_init_elem(format_tmp, element)))

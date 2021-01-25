@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ui.c                                            :+:      :+:    :+:   */
+/*   ft_base_ui.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 17:09:35 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/21 22:59:28 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/25 18:11:22 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static unsigned int	check_base(char *base)
 	return (i);
 }
 
-static char	count_base(int index, char *base)
+static char			count_base(int index, char *base)
 {
 	int i;
 
@@ -34,7 +34,7 @@ static char	count_base(int index, char *base)
 	return (base[i]);
 }
 
-static int	base_is_valide(char *base)
+static int			base_is_valide(char *base)
 {
 	int i;
 	int j;
@@ -59,8 +59,12 @@ static int	base_is_valide(char *base)
 	return (1);
 }
 
-void		ft_ui(unsigned int nbr, char *base, int *size, int dot, int index)
+void				ft_base_ui(unsigned int nbr, int *size, int dot, int index)
 {
+	char	*base;
+
+	index == 0 || index == 1 ? base = BASE_1 : 0;
+	index == 2 ? base = BASE_2 : 0;
 	if (base_is_valide(base) == 1)
 	{
 		if (nbr < 0)
@@ -68,17 +72,17 @@ void		ft_ui(unsigned int nbr, char *base, int *size, int dot, int index)
 			nbr = nbr * -1;
 			ft_putchar('-');
 		}
-		while(dot > 0)
+		while (dot > 0)
 		{
 			ft_putchar('0');
 			dot--;
 		}
 		if (nbr >= check_base(base))
 		{
-			ft_ui((nbr / check_base(base)), base, size, dot, index);
+			ft_base_ui((nbr / check_base(base)), size, dot, index);
 			*size = *size + 1;
 		}
-		if (index == 1)
+		if (index == 1 || index == 2)
 			ft_putchar(count_base(nbr % check_base(base), base));
 	}
 }

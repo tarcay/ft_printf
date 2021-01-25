@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 18:08:05 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/23 11:27:10 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/25 18:05:29 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,57 +17,48 @@ static int	count_nb_hexa(int nb)
 	int size;
 
 	size = 1;
-	ft_ui(nb, "0123456789abcdef", &size, 0, 0);
+	ft_base_ui(nb, &size, 0, 0);
 	return (size);
 }
 
-static int	ft_print_and_count_hexa(int arg, int dot, int index)
+static int	ft_print_hexa(int arg, int dot, int index)
 {
 	int	size;
-	int size_arg;
+	int size_tmp;
 
 	size = 1;
-	size_arg = count_nb_hexa(arg);
+	size_tmp = count_nb_hexa(arg);
 	if (index == 1)
-		ft_ui(arg, "0123456789abcdef", &size, dot - size_arg, 1);
+		ft_base_ui(arg, &size, dot - size_tmp, index);
 	if (index == 2)
-		ft_ui(arg, "0123456789ABCDEF", &size, dot - size_arg, 1);
+		ft_base_ui(arg, &size, dot - size_tmp, index);
 	return (size);
 }
 
-int			ft_apply_for_hexa(t_flags *format, va_list args, int index)
+int			ft_apply_for_hexa(t_flags *elem, va_list args, int index)
 {
-	int	arg_int;
-	int	arg_size;
+	int	arg;
 
-	if (format && args)
+	if (elem->star > 0)
+		elem->width = va_arg(args, int);
+	if (elem->star > 1)
+		elem->dot = va_arg(args, int);
+	arg = va_arg(args, int);
+	elem->arg_size = count_nb_hexa(arg);
+	elem->dot > elem->arg_size ? elem->arg_size = elem->dot : 0;
+	if ((elem->minius || elem->width < 0) && ++elem->minius)
 	{
-		if (format->star > 0)
-			format->width = va_arg(args, int);
-		if (format->star > 1)
-			format->dot = va_arg(args, int);
-		arg_int = va_arg(args, int);
-		arg_size = count_nb_hexa(arg_int);
-		if (format->dot > arg_size)
-			arg_size = format->dot;
-		if ((format->minius || format->width < 0) && ++format->minius)
-		{
-			if (format->width < 0)
-				format->width *= -1;
-			ft_print_and_count_hexa(arg_int, format->dot, index);
-			ft_print_width(format->width, arg_size, 1);
-		}
-		if (!format->minius && format->zero == 0)
-		{
-			ft_print_width(format->width, arg_size, 1);
-			ft_print_and_count_hexa(arg_int, format->dot, index);
-		}
-		if (!format->minius && format->zero == 1)
-		{
-			ft_print_width(format->width, arg_size, 0);
-			ft_print_and_count_hexa(arg_int, format->dot, index);
-		}
-		return (arg_size >= format->width ? arg_size : format->width);
+		elem->width < 0 ? elem->width *= -1 : 0;
+		ft_print_hexa(arg, elem->dot, index);
+		ft_print_width(elem->width, elem->arg_size, 1);
 	}
-	return (0);
+	if (!elem->minius)
+	{
+		if (elem->zero == 0)
+			ft_print_width(elem->width, elem->arg_size, 1);
+		if (elem->zero == 1)
+			ft_print_width(elem->width, elem->arg_size, 0);
+		ft_print_hexa(arg, elem->dot, index);
+	}
+	return (elem->arg_size >= elem->width ? elem->arg_size : elem->width);
 }

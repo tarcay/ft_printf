@@ -5,8 +5,8 @@ N_TEMP = temp.a
 NAME = libftprintf.a
 
 SRCS =  ft_printf.c \
-		srcs/ft_ui.c \
-		srcs/ft_ul.c \
+		srcs/ft_base_ui.c \
+		srcs/ft_base_ul.c \
 		srcs/ft_putchar.c \
 		srcs/ft_putstr.c \
 		srcs/ft_putnbr.c \
@@ -16,18 +16,17 @@ SRCS =  ft_printf.c \
 		srcs/ft_lst_free.c \
 		srcs/ft_create_lst_format.c \
 		srcs/ft_print_width.c \
-		srcs/ft_apply_for_str.c \
-		srcs/ft_apply_for_char.c \
 		srcs/ft_apply_for_int.c \
-		srcs/ft_apply_for_ptr.c \
-		srcs/ft_apply_for_unsigned.c \
-		srcs/ft_apply_for_hexa.c \
-		srcs/ft_apply_for_percent.c \
-		srcs/ft_print_precision.c \
 		srcs/ft_count_size_nb.c \
+		srcs/ft_apply_for_char.c \
+		srcs/ft_apply_for_hexa.c \
+		srcs/ft_apply_for_str.c \
+		srcs/ft_apply_for_unsigned.c \
+		srcs/ft_apply_for_ptr.c \
+		srcs/ft_apply_for_percent.c \
 		
-SURPL_O = ft_ui.o \
-		  ft_ul.o \
+SURPL_O = ft_base_ui.o \
+		  ft_base_ul.o \
 		  ft_putchar.o \
 		  ft_putstr.o \
 		  ft_putnbr.o \
@@ -37,15 +36,14 @@ SURPL_O = ft_ui.o \
 		  ft_lst_free.o \
 		  ft_create_lst_format.o \
 		  ft_print_width.o \
-		  ft_apply_for_str.o \
-		  ft_apply_for_char.o \
-		  ft_apply_for_int.o \
-		  ft_apply_for_ptr.o \
-		  ft_apply_for_unsigned.o \
-		  ft_apply_for_hexa.o \
-		  ft_apply_for_percent.o \
-		  ft_print_precision.o \
 		  ft_count_size_nb.o \
+		  ft_apply_for_int.o \
+		  ft_apply_for_char.o \
+		  ft_apply_for_hexa.o \
+		  ft_apply_for_str.o \
+		  ft_apply_for_unsigned.o \
+		  ft_apply_for_ptr.o \
+		  ft_apply_for_percent.o \
 
 CC = clang
 

@@ -6,66 +6,57 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 13:22:27 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/23 11:28:16 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/25 15:48:25 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static int		ft_print_and_count_str(char *str, int index, int size_arg, int dot)
+static int		ft_print_and_count_str(t_flags *elem, char *str, int index)
 {
-	if (str == NULL && dot != -1)
+	if (str == NULL && elem->dot != -1)
 	{
 		if (index == 1)
 			ft_putstr("(null)");
 		return (6);
 	}
-	if (str == NULL && dot == -1)
-		return (0);
 	if (index == 0)
 		return (ft_strlen(str));
 	if (index == 1)
 	{
-		while (*str && size_arg)
+		while (*str && elem->arg_size)
 		{
 			ft_putchar(*str);
 			str++;
-			size_arg--;
+			elem->arg_size--;
 		}
 	}
-	return (!size_arg ? ft_strlen(str) : size_arg);
+	return (!elem->arg_size ? ft_strlen(str) : elem->arg_size);
 }
 
-int				ft_apply_for_str(t_flags *format, va_list args)
+int				ft_apply_for_str(t_flags *elem, va_list args)
 {
-	char	*arg_str;
-	int		arg_size;
+	char	*arg;
 
-	if (format && args)
+	if (elem->star > 0)
+		elem->width = va_arg(args, int);
+	if (elem->star > 1)
+		elem->dot = va_arg(args, int);
+	arg = va_arg(args, char *);
+	elem->arg_size = ft_print_and_count_str(elem, arg, 0);
+	elem->dot == -1 ? elem->arg_size = 0 : 0;
+	if (elem->dot > 0 && elem->dot < elem->arg_size)
+		elem->arg_size = elem->dot;
+	if ((elem->minius || elem->width < 0) && ++elem->minius)
 	{
-		if (format->star > 0)
-			format->width = va_arg(args, int);
-		if (format->star > 1)
-			format->dot = va_arg(args, int);
-		arg_str = va_arg(args, char *);
-		arg_size = ft_print_and_count_str(arg_str, 0, 0, format->dot);
-		if (format->dot == -1)
-			arg_size = 0;
-		if (format->dot > 0 && format->dot < arg_size)
-			arg_size = format->dot;
-		if ((format->minius || format->width < 0) && ++format->minius)
-		{
-			if (format->width < 0)
-				format->width *= -1;
-			ft_print_and_count_str(arg_str, 1, arg_size, format->dot);
-			ft_print_width(format->width, arg_size, 1);
-		}
-		if (!format->minius)
-		{
-			ft_print_width(format->width, arg_size, 1);
-			ft_print_and_count_str(arg_str, 1, arg_size, format->dot);
-		}
-		return (arg_size >= format->width ? arg_size : format->width);
+		elem->width < 0 ? elem->width *= -1 : 0;
+		ft_print_and_count_str(elem, arg, 1);
+		ft_print_width(elem->width, elem->arg_size, 1);
 	}
-	return (0);
+	if (!elem->minius)
+	{
+		ft_print_width(elem->width, elem->arg_size, 1);
+		ft_print_and_count_str(elem, arg, 1);
+	}
+	return (elem->arg_size >= elem->width ? elem->arg_size : elem->width);
 }

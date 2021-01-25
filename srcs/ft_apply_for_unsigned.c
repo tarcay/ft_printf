@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 10:51:36 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/23 11:28:25 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/25 15:59:17 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,59 +35,51 @@ static int	ft_print_and_count_unsigned(int arg, int index, int dot)
 	}
 }
 
-static void	swt(int size_width, int arg_int, int arg_size, int dot, int index)
+static void	swt(t_flags *elem, int arg_int, int index)
 {
 	int dot_size;
 
-	dot_size = dot - ft_print_and_count_unsigned(arg_int, 0, dot);
+	dot_size = elem->dot - ft_print_and_count_unsigned(arg_int, 0, elem->dot);
 	if (index == 0)
 	{
-		if (arg_size > 0)
+		if (elem->arg_size > 0)
 			ft_print_and_count_unsigned(arg_int, 1, dot_size);
-		ft_print_width(size_width, arg_size, 1);
+		ft_print_width(elem->width, elem->arg_size, 1);
 	}
 	if (index == 1)
 	{
-		ft_print_width(size_width, arg_size, 1);
-		if (arg_size > 0)
+		ft_print_width(elem->width, elem->arg_size, 1);
+		if (elem->arg_size > 0)
 			ft_print_and_count_unsigned(arg_int, 1, dot_size);
 	}
 	if (index == 2)
 	{
-		ft_print_width(size_width, arg_size, 0);
-		if (arg_size > 0)
+		ft_print_width(elem->width, elem->arg_size, 0);
+		if (elem->arg_size > 0)
 			ft_print_and_count_unsigned(arg_int, 1, dot_size);
 	}
 }
 
-int			ft_apply_for_unsigned(t_flags *format, va_list args)
+int			ft_apply_for_unsigned(t_flags *elem, va_list args)
 {
-	int	arg_int;
-	int	arg_size;
+	int	arg;
 
-	arg_size = 0;
-	if (format && args)
+	if (elem->star > 0)
+		elem->width = va_arg(args, int);
+	if (elem->star > 1)
+		elem->dot = va_arg(args, int);
+	arg = va_arg(args, int);
+	elem->arg_size = ft_print_and_count_unsigned(arg, 0, 0);
+	elem->dot > elem->arg_size ? elem->arg_size = elem->dot : 0;
+	elem->dot == -1 && arg == 0 ? elem->arg_size = 0 : 0;
+	if ((elem->minius || elem->width < 0) && ++elem->minius)
 	{
-		if (format->star > 0)
-			format->width = va_arg(args, int);
-		if (format->star > 1)
-			format->dot = va_arg(args, int);
-		arg_int = va_arg(args, int);
-		arg_size = ft_print_and_count_unsigned(arg_int, 0, 0);
-		if (format->dot > arg_size)
-			arg_size = format->dot;
-		format->dot == -1 && arg_int == 0 ? arg_size = 0 : 0;
-		if ((format->minius || format->width < 0) && ++format->minius)
-		{
-			if (format->width < 0)
-				format->width *= -1;
-			swt(format->width, arg_int, arg_size, format->dot, 0);
-		}
-		if (!format->minius && format->zero == 0)
-			swt(format->width, arg_int, arg_size, format->dot, 1);
-		if (!format->minius && format->zero == 1)
-			swt(format->width, arg_int, arg_size, format->dot, 2);
-		return (arg_size >= format->width ? arg_size : format->width);
+		elem->width < 0 ? elem->width *= -1 : 0;
+		swt(elem, arg, 0);
 	}
-	return (0);
+	if (!elem->minius && elem->zero == 0)
+		swt(elem, arg, 1);
+	if (!elem->minius && elem->zero == 1)
+		swt(elem, arg, 2);
+	return (elem->arg_size >= elem->width ? elem->arg_size : elem->width);
 }

@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 16:11:02 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/23 08:47:35 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/25 16:37:13 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_putnbr(long nb, int dot)
 		nb = nb * -1;
 		ft_putchar('-');
 	}
-    while(dot > 0)
+	while (dot > 0)
 	{
 		ft_putchar('0');
 		dot--;

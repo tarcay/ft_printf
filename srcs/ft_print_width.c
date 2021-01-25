@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 13:17:33 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/23 10:58:18 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/25 16:36:28 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	ft_print_width(int size_width, int size_arg, int index)
 	counter = 0;
 	if (index == 0 && size_width > size_arg)
 	{
-		
 		while (counter < (size_width - size_arg))
 		{
 			ft_putchar('0');

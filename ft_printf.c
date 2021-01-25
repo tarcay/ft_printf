@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 16:31:09 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/23 09:54:35 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/25 16:29:33 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	size_format(t_flags *format_lst)
 	counter = 0;
 	while (format_tmp)
 	{
-		counter = counter + format_tmp->size;
+		counter = counter + format_tmp->size_flag;
 		format_tmp = format_tmp->next;
 	}
 	return (counter);
@@ -55,26 +55,18 @@ static int	size_output(t_flags *format, const char *str)
 	return (ft_strlen(str) - size_format(format));
 }
 
-int			ft_printf(const char *str, ...)
+static void	display(t_flags *lst, va_list args, char *str, int *size_arg)
 {
-	va_list	args;
-	t_flags	*format_lst;
-	t_flags	*format_lst_tmp;
-	int		size_arg;
-	int		size_str;
+	t_flags	*lst_tmp;
 
-	ft_create_lst_format(&format_lst, (char *)str);
-	size_arg = 0;
-	size_str = size_output(format_lst, str);
-	format_lst_tmp = format_lst;
-	va_start(args, str);
+	lst_tmp = lst;
 	while (*str)
 	{
 		if (*str == '%')
 		{
-			analyze_type(format_lst_tmp, args, &size_arg);
-			str += (format_lst_tmp->size);
-			format_lst_tmp = format_lst_tmp->next;
+			analyze_type(lst_tmp, args, size_arg);
+			str += lst_tmp->size_flag;
+			lst_tmp = lst_tmp->next;
 			if (!*str)
 				break ;
 		}
@@ -84,7 +76,21 @@ int			ft_printf(const char *str, ...)
 			str++;
 		}
 	}
+}
+
+int			ft_printf(const char *str, ...)
+{
+	va_list	args;
+	t_flags	*lst;
+	int		size_args;
+	int		size_str;
+
+	ft_create_lst_format(&lst, (char *)str);
+	size_args = 0;
+	size_str = size_output(lst, str);
+	va_start(args, str);
+	display(lst, args, (char *)str, &size_args);
 	va_end(args);
-	ft_lst_free(&format_lst);
-	return (size_str + size_arg);
+	ft_lst_free(&lst);
+	return (size_str + size_args);
 }
