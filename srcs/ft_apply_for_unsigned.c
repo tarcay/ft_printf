@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 10:51:36 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/25 15:59:17 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/25 18:32:19 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ static int	ft_print_and_count_unsigned(int arg, int index, int dot)
 	{
 		arg_conv = 4294967296 + arg;
 		if (index == 1)
-			ft_putnbr((long)arg_conv, dot);
+			ft_putnbr((long)arg_conv, dot, 0);
 		return (ft_count_size_nb((long)arg_conv, 0));
 	}
 	else
 	{
 		arg_conv = (unsigned int)arg;
 		if (index == 1)
-			ft_putnbr((long)arg_conv, dot);
+			ft_putnbr((long)arg_conv, dot, 0);
 		return (ft_count_size_nb((long)arg_conv, 0));
 	}
 }

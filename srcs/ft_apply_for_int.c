@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:00:04 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/25 14:08:17 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/25 18:59:17 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,21 @@ static void	swt(t_flags *elem, int arg, int index)
 	if (index == 0)
 	{
 		if (elem->arg_size > 0)
-			ft_putnbr(arg, elem->dot - ft_count_size_nb(arg, 1));
+			ft_putnbr(arg, elem->dot - ft_count_size_nb(arg, 1), 0);
 		ft_print_width(elem->width, elem->arg_size, 1);
 	}
 	if (index == 1)
 	{
 		ft_print_width(elem->width, elem->arg_size, 1);
 		if (elem->arg_size > 0)
-			ft_putnbr(arg, elem->dot - ft_count_size_nb(arg, 1));
+			ft_putnbr(arg, elem->dot - ft_count_size_nb(arg, 1), 0);
 	}
 	if (index == 2)
 	{
+		ft_putchar('-');
 		ft_print_width(elem->width, elem->arg_size, 0);
 		if (elem->arg_size > 0)
-			ft_putnbr(arg, elem->dot - ft_count_size_nb(arg, 1));
+			ft_putnbr(arg, elem->dot - ft_count_size_nb(arg, 1), 1);
 	}
 }
 
