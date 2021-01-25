@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 13:22:27 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/25 22:14:10 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/25 22:48:34 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int		ft_print_and_count_str(t_flags *elem, char *str, int index)
 		return (6);
 	}
 	if (index == 0)
-		return (0);
+		return (ft_strlen(str));
 	if (index == 1)
 	{
 		while (*str && arg_size)
