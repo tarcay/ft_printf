@@ -6,14 +6,17 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 13:22:27 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/25 15:48:25 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/25 21:22:07 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
 static int		ft_print_and_count_str(t_flags *elem, char *str, int index)
-{
+{	
+	int arg_size;
+
+	arg_size = elem->arg_size;
 	if (str == NULL && elem->dot != -1)
 	{
 		if (index == 1)
@@ -24,14 +27,14 @@ static int		ft_print_and_count_str(t_flags *elem, char *str, int index)
 		return (ft_strlen(str));
 	if (index == 1)
 	{
-		while (*str && elem->arg_size)
+		while (*str && arg_size)
 		{
 			ft_putchar(*str);
 			str++;
-			elem->arg_size--;
+			arg_size--;
 		}
 	}
-	return (!elem->arg_size ? ft_strlen(str) : elem->arg_size);
+	return (!arg_size ? ft_strlen(str) : arg_size);
 }
 
 int				ft_apply_for_str(t_flags *elem, va_list args)
