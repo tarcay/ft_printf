@@ -6,11 +6,22 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 16:31:09 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/26 14:41:11 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/26 17:29:07 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
+
+static int		next_format_in_input(char *input, int index)
+{
+	while (ft_is_conv_char(input[index]) != 1)
+	{
+		if (!input[index] || ft_is_flag(input[index]) == 0)
+			return (-1);
+		index++;
+	}
+	return (index + 1);
+}
 
 static void	analyze_type(t_flags *format, va_list args, int *size)
 {
@@ -58,22 +69,24 @@ static int	size_output(t_flags *format, const char *str)
 static void	display(t_flags *lst, va_list args, char *str, int *size_arg)
 {
 	t_flags	*lst_tmp;
+	int		index;
 
 	lst_tmp = lst;
-	while (*str)
+	index = 0;
+	while (str[index])
 	{
-		if (*str == '%')
+		if (str[index] == '%' && next_format_in_input(str, index + 1) != -1)
 		{
 			analyze_type(lst_tmp, args, size_arg);
-			str += lst_tmp->size_flag;
+			index += lst_tmp->size_flag;
 			lst_tmp = lst_tmp->next;
-			if (!*str)
+			if (!str[index])
 				break ;
 		}
-		if (*str != '%')
+		if (str[index] != '%' || (str[index] == '%' && next_format_in_input(str, index + 1) == -1))
 		{
-			ft_putchar(*str);
-			str++;
+			ft_putchar(str[index]);
+			index++;
 		}
 	}
 }
@@ -85,11 +98,9 @@ int			ft_printf(const char *str, ...)
 	int		size_args;
 	int		size_str;
 
-	ft_create_lst_format(&lst, (char *)str);
-	if (!str)
+	if (!str || (*str == '%' && ft_strlen(str) == 1))
 		return (-1);
-	if(!lst)
-		return (0);
+	ft_create_lst_format(&lst, (char *)str);
 	size_args = 0;
 	size_str = size_output(lst, str);
 	va_start(args, str);

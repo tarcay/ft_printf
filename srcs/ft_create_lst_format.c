@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:54:13 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/26 14:54:33 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/26 16:59:02 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int		next_format_in_input(char *input, int index)
 {
 	while (ft_is_conv_char(input[index]) != 1)
 	{
-		if (!input[index])
+		if (!input[index] || ft_is_flag(input[index]) == 0)
 			return (-1);
 		index++;
 	}
@@ -102,16 +102,23 @@ void			ft_create_lst_format(t_flags **lst_format, char *input)
 {
 	int	i;
 
+	if (*lst_format)
+
 	i = 0;
 	if (input)
 	{
 		*lst_format = NULL;
 		while (input[i] && i != -1)
 		{
-			if (input[i] == '%' && next_format_in_input(input, i + 1) != -1)
+			if (input[i] == '%')
 			{
-				ft_lstadd_end(lst_format, ft_lst_create_elem(&input[i] + 1));
-				i = next_format_in_input(input, i + 1);
+				if (next_format_in_input(input, i + 1) != -1)
+				{
+					ft_lstadd_end(lst_format, ft_lst_create_elem(&input[i] + 1));
+					i = next_format_in_input(input, i + 1);
+				}
+				else
+					i++;
 			}
 			else
 				i++;
