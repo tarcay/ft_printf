@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 16:31:09 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/25 16:29:33 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/26 14:24:01 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,10 @@ int			ft_printf(const char *str, ...)
 	int		size_str;
 
 	ft_create_lst_format(&lst, (char *)str);
+	if (!str)
+		return (-1);
+	if(!lst)
+		return (0);
 	size_args = 0;
 	size_str = size_output(lst, str);
 	va_start(args, str);
