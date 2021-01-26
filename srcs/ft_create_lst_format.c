@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:54:13 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/26 14:39:49 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/26 14:54:33 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void			ft_create_lst_format(t_flags **lst_format, char *input)
 		*lst_format = NULL;
 		while (input[i] && i != -1)
 		{
-			if (input[i] == '%')
+			if (input[i] == '%' && next_format_in_input(input, i + 1) != -1)
 			{
 				ft_lstadd_end(lst_format, ft_lst_create_elem(&input[i] + 1));
 				i = next_format_in_input(input, i + 1);
