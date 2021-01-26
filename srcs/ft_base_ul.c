@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 17:09:35 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/25 18:11:55 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/26 09:59:56 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,10 @@ void				ft_base_ul(unsigned long nbr, int *size, int dot, int index)
 		}
 		while (dot > 0)
 		{
-			ft_putchar('0');
+			if (index == 1)
+				ft_putchar('0');
 			dot--;
+			*size = *size + 1;
 		}
 		if (nbr >= check_base(base))
 		{

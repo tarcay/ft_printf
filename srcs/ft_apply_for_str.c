@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 13:22:27 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/25 22:48:34 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/26 13:21:14 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,13 @@ static int		ft_print_and_count_str(t_flags *elem, char *str, int index)
 	arg_size = elem->arg_size;
 	if (str == NULL)
 	{
-		if (index == 1 && elem->dot == 0)
-			ft_putstr("(null)");
-		return (6);
+		if (elem->dot == 0 || elem->dot > 5)
+		{
+			if (index == 1)
+				ft_putstr("(null)");
+			return (6);
+		}
+		return (0);
 	}
 	if (index == 0)
 		return (ft_strlen(str));
@@ -48,7 +52,7 @@ int				ft_apply_for_str(t_flags *elem, va_list args)
 	arg = va_arg(args, char *);
 	elem->arg_size = ft_print_and_count_str(elem, arg, 0);
 	elem->dot == -1 ? elem->arg_size = 0 : 0;
-	if (elem->dot > 0 && elem->dot < elem->arg_size)
+	if (elem->dot > 0 && elem->dot < elem->arg_size && arg != NULL)
 		elem->arg_size = elem->dot;
 	if ((elem->minius || elem->width < 0) && ++elem->minius)
 	{
