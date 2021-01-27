@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 16:31:09 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/27 18:47:42 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/27 19:35:12 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,20 +81,20 @@ static void	display(t_flags *lst, va_list args, char *str, int *size_arg)
 	}
 }
 
-int			ft_printf(const char *str, ...)
+int			ft_printf(const char *input, ...)
 {
 	va_list	args;
 	t_flags	*lst;
 	int		size_args;
 	int		size_str;
 
-	if (!str || (*str == '%' && ft_strlen(str) == 1))
+	if (!input || (*input == '%' && ft_strlen(input) == 1))
 		return (-1);
-	ft_create_lst_format(&lst, (char *)str);
+	ft_create_lst_format(&lst, (char *)input);
 	size_args = 0;
-	size_str = size_output(lst, str);
-	va_start(args, str);
-	display(lst, args, (char *)str, &size_args);
+	size_str = size_output(lst, input);
+	va_start(args, input);
+	display(lst, args, (char *)input, &size_args);
 	va_end(args);
 	ft_lst_free(&lst);
 	return (size_str + size_args);
