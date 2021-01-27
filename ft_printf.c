@@ -6,22 +6,11 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 16:31:09 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/26 17:29:07 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/27 18:47:42 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
-
-static int		next_format_in_input(char *input, int index)
-{
-	while (ft_is_conv_char(input[index]) != 1)
-	{
-		if (!input[index] || ft_is_flag(input[index]) == 0)
-			return (-1);
-		index++;
-	}
-	return (index + 1);
-}
 
 static void	analyze_type(t_flags *format, va_list args, int *size)
 {
@@ -75,7 +64,7 @@ static void	display(t_flags *lst, va_list args, char *str, int *size_arg)
 	index = 0;
 	while (str[index])
 	{
-		if (str[index] == '%' && next_format_in_input(str, index + 1) != -1)
+		if (str[index] == '%' && ft_next_format(str, index + 1) != -1)
 		{
 			analyze_type(lst_tmp, args, size_arg);
 			index += lst_tmp->size_flag;
@@ -83,7 +72,8 @@ static void	display(t_flags *lst, va_list args, char *str, int *size_arg)
 			if (!str[index])
 				break ;
 		}
-		if (str[index] != '%' || (str[index] == '%' && next_format_in_input(str, index + 1) == -1))
+		if (str[index] != '%' ||
+			(str[index] == '%' && ft_next_format(str, index + 1) == -1))
 		{
 			ft_putchar(str[index]);
 			index++;

@@ -24,6 +24,7 @@ SRCS =  ft_printf.c \
 		srcs/ft_apply_for_unsigned.c \
 		srcs/ft_apply_for_ptr.c \
 		srcs/ft_apply_for_percent.c \
+		srcs/ft_next_format.c \
 		
 SURPL_O = ft_base_ui.o \
 		  ft_base_ul.o \
@@ -44,6 +45,7 @@ SURPL_O = ft_base_ui.o \
 		  ft_apply_for_unsigned.o \
 		  ft_apply_for_ptr.o \
 		  ft_apply_for_percent.o \
+		  ft_next_format.o \
 
 CC = clang
 

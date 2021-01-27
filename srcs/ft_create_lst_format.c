@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:54:13 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/27 09:27:08 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/27 18:44:59 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,35 +42,31 @@ static void		ft_lstadd_end(t_flags **alst, t_flags *new)
 
 static t_flags	*ft_lst_init_elem(char *c, t_flags *format)
 {
-	if (c && format && (ft_is_flag(*c) == 1 || ft_is_conv_char(*c) == 1))
+	if (!(c && format && (ft_is_flag(*c) == 1 || ft_is_conv_char(*c) == 1)))
+		return (NULL);
+	if (*c == '-')
 	{
-		if (*c == '-')
-		{
-			format->minius = 1;
-			format->zero = 0;
-		}
-		else if (*c >= '1' && *c <= '9' && format->width == 0 &&
-				format->dot == 0)
-			format->width = ft_atoi((char *)c);
-		else if (ft_is_conv_char(*c))
-			format->type = *c;
-		else if (*c == '0' && format->minius == 0 && format->width == 0)
-			format->zero = 1;
-		if (*c == '*' && format->star == 0)
-			format->star = 1;
-		if (*c == '.')
-		{
-			if (c[1] == '*' && format->star == 0)
-				format->star = 3;
-			if (c[1] == '*' && format->star == 1)
-				format->star = 2;
-			format->zero = 0;
-			format->dot = ft_atoi((char *)c + 1);
-			format->dot == 0 && c[1] != '*' ? format->dot = -1 : 0;
-		}
-		return (format);
+		format->minius = 1;
+		format->zero = 0;
 	}
-	return (NULL);
+	else if (*c >= '1' && *c <= '9' && format->width == 0 &&
+			format->dot == 0)
+		format->width = ft_atoi((char *)c);
+	else if (ft_is_conv_char(*c))
+		format->type = *c;
+	else if (*c == '0' && format->minius == 0 && format->width == 0)
+		format->zero = 1;
+	else if (*c == '*' && format->star == 0)
+		format->star = 1;
+	if (*c == '.')
+	{
+		c[1] == '*' && format->star == 0 ? format->star = 3 : 0;
+		c[1] == '*' && format->star == 1 ? format->star = 2 : 0;
+		format->zero = 0;
+		format->dot = ft_atoi((char *)c + 1);
+		format->dot == 0 && c[1] != '*' ? format->dot = -1 : 0;
+	}
+	return (format);
 }
 
 static t_flags	*ft_lst_create_elem(char *format)
@@ -102,23 +98,21 @@ static t_flags	*ft_lst_create_elem(char *format)
 	return (NULL);
 }
 
-void			ft_create_lst_format(t_flags **lst_format, char *input)
+void			ft_create_lst_format(t_flags **lst, char *input)
 {
 	int	i;
-
-	if (*lst_format)
 
 	i = 0;
 	if (input)
 	{
-		*lst_format = NULL;
+		*lst = NULL;
 		while (input[i] && i != -1)
 		{
 			if (input[i] == '%')
 			{
 				if (next_format_in_input(input, i + 1) != -1)
 				{
-					ft_lstadd_end(lst_format, ft_lst_create_elem(&input[i] + 1));
+					ft_lstadd_end(lst, ft_lst_create_elem(&input[i] + 1));
 					i = next_format_in_input(input, i + 1);
 				}
 				else

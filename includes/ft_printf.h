@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 17:03:17 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/26 15:42:53 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/27 18:49:05 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 # include "../libft/libft.h"
 # include <stdarg.h>
-# include <stdio.h>
 # include <unistd.h>
 
 typedef struct	s_flags
@@ -48,6 +47,7 @@ int				ft_is_conv_char(char c);
 int				ft_is_flag(char c);
 int				ft_putchar(char c);
 int				ft_count_size_nb(long nb, int dot_size);
+int				ft_next_format(char *input, int index);
 void			ft_putnbr(long nb, int dot, int zero);
 void			ft_putstr(char *str);
 void			ft_base_ui(unsigned int nbr, int *size, int dot, int index);
