@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 13:22:27 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/27 18:18:49 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/29 10:17:49 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int		ft_print_and_count_str(t_flags *elem, char *str, int index)
 	int arg_size;
 
 	arg_size = elem->arg_size;
-	if (str == NULL)
+	if (str == NULL || str == 0)
 	{
 		if (elem->dot == 0 || elem->dot > 5)
 		{

@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 23:49:51 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/26 10:05:54 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/29 10:17:43 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	ft_print_and_count_addr(unsigned long arg, int index)
 	if (!arg)
 	{
 		if (index == 1)
-			ft_putstr("(nil)");
+			ft_putstr("0X0");
 		return (5);
 	}
 	if (index == 1)
