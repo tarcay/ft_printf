@@ -38,8 +38,8 @@ int main(void)
     // print(format_lst);
 	// ft_lst_free(&format_lst);
 
-    printf(" [%d]\n", printf("%.*s", -3, "OK"));
-    printf(" [%d]\n", ft_printf("%.*s", -3, "OK"));
+    printf(" [%d]\n", printf("%5.0x", 0));
+    printf(" [%d]\n", ft_printf("%5.0x", 0));
     
     return (0);
 }
