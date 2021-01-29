@@ -38,8 +38,10 @@ int main(void)
     // print(format_lst);
 	// ft_lst_free(&format_lst);
 
-    printf(" [%d]\n", printf("%p", (void *)123456789lu));
-    printf(" [%d]\n", ft_printf("%p", (void *)123456789lu));
+    printf(" [%d]\n", printf("%.p", (void *)72637271lu));
+    printf(" [%d]\n", ft_printf("%.p", (void *)72637271lu));
+    printf(" [%d]\n", printf("%.x", 72637271));
+    printf(" [%d]\n", ft_printf("%.x", 72637271));
     
     return (0);
 }

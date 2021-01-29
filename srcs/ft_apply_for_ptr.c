@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 23:49:51 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/29 17:02:10 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/29 17:13:30 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	count_nb_ul(unsigned long nb)
 	return (size + 2);
 }
 
-static void	ft_print_ptr(t_flags *elem, int arg)
+static void	ft_print_ptr(t_flags *elem, unsigned long arg)
 {
 	int	size;
 	int size_tmp;
