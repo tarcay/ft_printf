@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:51:00 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/29 13:30:19 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/29 22:10:54 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_flags	*ft_lst_new_elem(void)
 	struct_flags->zero = 0;
 	struct_flags->width = 0;
 	struct_flags->size_flag = 0;
-	struct_flags->dot_is_neg = 0;
+	struct_flags->dt = 0;
 	struct_flags->next = NULL;
 	return (struct_flags);
 }
