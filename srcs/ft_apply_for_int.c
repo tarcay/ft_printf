@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:00:04 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/27 17:34:42 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/29 13:28:47 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int			ft_apply_for_int(t_flags *elem, va_list args)
 		elem->arg_size = elem->dot;
 		arg < 0 ? elem->arg_size++ : 0;
 	}
-	elem->dot == -1 && arg == 0 ? elem->arg_size = 0 : 0;
+	elem->dot_is_neg == 1 && arg == 0 ? elem->arg_size = 0 : 0;
 	if ((elem->minius || elem->width < 0) && ++elem->minius)
 	{
 		elem->width < 0 ? elem->width *= -1 : 0;

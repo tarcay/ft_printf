@@ -38,8 +38,8 @@ int main(void)
     // print(format_lst);
 	// ft_lst_free(&format_lst);
 
-    printf(" [%d]\n", printf("%9.*s", -1, 0));
-    printf(" [%d]\n", ft_printf("%9.*s", -1, 0));
+    printf(" [%d]\n", printf("%.*s", -3, "OK"));
+    printf(" [%d]\n", ft_printf("%.*s", -3, "OK"));
     
     return (0);
 }

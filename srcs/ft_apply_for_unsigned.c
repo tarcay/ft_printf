@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 10:51:36 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/27 09:38:25 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/29 13:31:12 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int			ft_apply_for_unsigned(t_flags *elem, va_list args)
 	arg = va_arg(args, int);
 	elem->arg_size = ft_print_and_count_unsigned(arg, 0, 0);
 	elem->dot > elem->arg_size ? elem->arg_size = elem->dot : 0;
-	elem->dot == -1 && arg == 0 ? elem->arg_size = 0 : 0;
+	elem->dot_is_neg == 1 && arg == 0 ? elem->arg_size = 0 : 0;
 	if ((elem->minius || elem->width < 0) && ++elem->minius)
 	{
 		elem->width < 0 ? elem->width *= -1 : 0;

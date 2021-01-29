@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 17:03:17 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/29 11:27:02 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/29 13:28:01 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct	s_flags
 	int				zero;
 	int				width;
 	int				size_flag;
+	int				dot_is_neg;
 	struct s_flags	*next;
 }				t_flags;
 
