@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 17:03:17 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/29 13:28:01 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/29 16:57:01 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int				ft_printf(const char *input, ...);
 int				ft_apply_for_str(t_flags *format, va_list args);
 int				ft_apply_for_char(t_flags *format, va_list args);
 int				ft_apply_for_int(t_flags *format, va_list args);
-int				ft_apply_for_ptr(t_flags *format, va_list args);
+int				ft_apply_for_ptr(t_flags *elem, va_list args);
 int				ft_apply_for_unsigned(t_flags *format, va_list args);
 int				ft_apply_for_hexa(t_flags *format, va_list args, int index);
 int				ft_apply_for_percent(void);
