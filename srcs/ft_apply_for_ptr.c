@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 23:49:51 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/29 17:13:30 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/29 18:52:37 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	ft_print_ptr(t_flags *elem, unsigned long arg)
 	ft_putstr("0x");
 	if (arg == 0 && elem->dot_is_neg == 1)
 		return ;
-	ft_base_ul(arg, &size, elem->dot - size_tmp, 1);
+	ft_base_ul(arg, &size, elem->dot - size_tmp + 2, 1);
 }
 
 int			ft_apply_for_ptr(t_flags *elem, va_list args)
@@ -85,7 +85,7 @@ int			ft_apply_for_ptr(t_flags *elem, va_list args)
 	arg = (unsigned long)va_arg(args, void *);
 	elem->arg_size = count_nb_ul(arg);
 	elem->dot_is_neg == 1 && arg == 0 ? elem->arg_size = 0 : 0;
-	elem->dot > elem->arg_size ? elem->arg_size = elem->dot : 0;
+	elem->dot > elem->arg_size ? elem->arg_size = elem->dot + 2 : 0;
 	if ((elem->minius || elem->width < 0) && ++elem->minius)
 	{
 		elem->width < 0 ? elem->width *= -1 : 0;
