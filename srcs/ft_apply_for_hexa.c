@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 18:08:05 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/29 14:30:30 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/29 14:34:23 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static int	ft_print_hexa(int arg, int dot, int index)
 
 	size = 1;
 	size_tmp = count_nb_hexa(arg);
-	if (arg == 0 && dot == 0)
-		return (0);
+	// if (arg == 0 && dot == 0)
+	// 	return (0);
 	if (index == 1)
 		ft_base_ui(arg, &size, dot - size_tmp, index);
 	if (index == 2)
