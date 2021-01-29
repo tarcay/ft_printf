@@ -6,7 +6,7 @@
 /*   By: tarcay <tarcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 17:03:17 by tarcay            #+#    #+#             */
-/*   Updated: 2021/01/27 18:49:05 by tarcay           ###   ########.fr       */
+/*   Updated: 2021/01/29 11:27:02 by tarcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define FLAGS "*-.0123456789"
 # define BASE_1 "0123456789abcdef"
 # define BASE_2 "0123456789ABCDEF"
+# define NL "(null)"
 
 # include "../libft/libft.h"
 # include <stdarg.h>
